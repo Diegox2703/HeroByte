@@ -2,7 +2,7 @@ import { validateRegister } from "../schemas/registerSchema.js";
 import { validateUsername } from "../schemas/usernameSchema.js";
 import { validateCharacter } from "../schemas/characterSchema.js";
 import bcrypt from "bcrypt";
-import * as userModules from "../modules/userModules.js";
+import * as userModules from "../modules/user.module.js";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config.js";
 import passport from "passport";
@@ -178,12 +178,10 @@ export const registerValidation = async (req, res) => {
   const validatedUser = result.data;
 
   if (validatedUser.password !== confirm_password) {
-    return res
-      .status(400)
-      .json({
-        error: "INVALID_FIELDS",
-        errorMessage: "Las contraseñas no coinciden",
-      });
+    return res.status(400).json({
+      error: "INVALID_FIELDS",
+      errorMessage: "Las contraseñas no coinciden",
+    });
   }
 
   const hashedpassword = await bcrypt.hash(validatedUser.password, 10);
@@ -244,12 +242,10 @@ export const usernameValidation = async (req, res) => {
   }
 
   if (userExist)
-    return res
-      .status(400)
-      .json({
-        error: "USEREXIST",
-        errorMessage: "Nombre de usuario ya existe",
-      });
+    return res.status(400).json({
+      error: "USEREXIST",
+      errorMessage: "Nombre de usuario ya existe",
+    });
 
   const validatedUsername = result.data.username;
 
@@ -441,31 +437,23 @@ export const handleStrategy = (strategy) => {
   return (req, res, next) => {
     passport.authenticate(strategy, (error, user, info) => {
       if (error)
-        return res
-          .status(400)
-          .render("errorPage", {
-            errorMessage: "Hubo un error interno, intente mas tarde",
-          });
+        return res.status(400).render("errorPage", {
+          errorMessage: "Hubo un error interno, intente mas tarde",
+        });
       if (info.error === "EMAILEXIST")
-        return res
-          .status(400)
-          .render("errorPage", {
-            errorMessage:
-              "Ya existe un usuario con el mismo correo, intente usar otra cuenta.",
-          });
+        return res.status(400).render("errorPage", {
+          errorMessage:
+            "Ya existe un usuario con el mismo correo, intente usar otra cuenta.",
+        });
       if (info.error === "USERNOFOUND")
-        return res
-          .status(400)
-          .render("errorPage", {
-            errorMessage: "Usuario no encontrado, intente registrarse",
-          });
+        return res.status(400).render("errorPage", {
+          errorMessage: "Usuario no encontrado, intente registrarse",
+        });
       req.logIn(user, (err) => {
         if (err)
-          return res
-            .status(400)
-            .render("errorPage", {
-              errorMessage: "Hubo un error interno, intente mas tarde",
-            });
+          return res.status(400).render("errorPage", {
+            errorMessage: "Hubo un error interno, intente mas tarde",
+          });
         res.status(200).redirect("/home");
       });
     })(req, res, next);

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import * as userControllers from '../controllers/userControllers.js'
+import * as userControllers from '../controllers/user.controller.js'
 import { authCreateNewUsername, authUser, isAuthenticated } from '../middlewares/authMiddleware.js'
 import passport from 'passport'
 import '../strategies/google-strategy.js'

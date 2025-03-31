@@ -1,7 +1,7 @@
 import express from 'express'
 import getDirname from './dirname.js'
 import { join } from 'node:path'
-import router from './routes/routes.js'
+import userRoutes from './routes/user.routes.js'
 import cookieParser from 'cookie-parser'
 import passport from 'passport'
 import session from 'express-session'
@@ -9,15 +9,13 @@ import { SESSION_SECRET } from './config.js'
 import { RedisStore } from 'connect-redis'
 import Redis from 'ioredis'
 import responseTime from 'response-time'
+import { REDIS_URL } from './config.js'
 
 const __dirname = getDirname()
  
 const app = express()
 
-const redisClient = new Redis({
-    host: '127.0.0.1',
-    port: 6379 
-})
+const redisClient = new Redis(REDIS_URL)
 
 app.set('view engine', 'ejs')
 app.set('views', join(__dirname, 'views'))
@@ -40,6 +38,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(responseTime())
 
-app.use(router)  
+app.use(userRoutes)  
 
 export default app
