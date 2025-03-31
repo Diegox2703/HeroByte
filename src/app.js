@@ -7,15 +7,12 @@ import passport from 'passport'
 import session from 'express-session'
 import { SESSION_SECRET } from './config.js'
 import { RedisStore } from 'connect-redis'
-import Redis from 'ioredis'
 import responseTime from 'response-time'
-import { REDIS_URL } from './config.js'
+import redisClient from './redis.js'
 
 const __dirname = getDirname()
  
 const app = express()
-
-const redisClient = new Redis(REDIS_URL)
 
 app.set('view engine', 'ejs')
 app.set('views', join(__dirname, 'views'))

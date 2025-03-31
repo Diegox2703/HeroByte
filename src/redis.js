@@ -3,7 +3,7 @@ import { REDIS_URL } from "./config.js";
 
 const redisClient = createClient({
   url: REDIS_URL, 
-});
+}); 
 
 redisClient.on("error", (err) => console.log("Redis error", err));
 

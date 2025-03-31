@@ -39,7 +39,7 @@ export const isAuthenticated = async (req, res, next) => {
   if (token) {
     try {
       const userId = jwt.verify(token, JWT_SECRET);
-      return res.redirect("/home");
+      return res.redirect("/");
     } catch (err) {
       console.log(err);
     }
@@ -47,7 +47,7 @@ export const isAuthenticated = async (req, res, next) => {
 
   if (req.user) {
     if (!req.user.username) return res.redirect("/new/username");
-    return res.redirect("/home");
+    return res.redirect("/");
   }
 
   next();
@@ -59,17 +59,17 @@ export const authCreateNewUsername = (req, res, next) => {
   if (token) {
     try {
       const userId = jwt.verify(token, JWT_SECRET);
-      return res.redirect("/home");
+      return res.redirect("/");
     } catch (err) {
       console.log(err);
-      return res.redirect("/home");
+      return res.redirect("/");
     }
   }
 
   if (req.user) {
     if (!req.user.username) return next();
-    return res.redirect("/home");
+    return res.redirect("/");
   }
 
-  res.redirect("/home");
+  res.redirect("/");
 };

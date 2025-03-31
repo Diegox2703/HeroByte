@@ -11,7 +11,7 @@ const router = Router()
 
 router.get('/login', isAuthenticated, userControllers.getLoginPage)
 router.get('/register', isAuthenticated, userControllers.getRegisterPage)
-router.get('/home', authUser, userControllers.getHomePage)
+router.get('/', authUser, userControllers.getHomePage)
 router.get('/characters', authUser, userControllers.getCharactersPage)
 router.get('/character/:id', userControllers.getCharacterDetailsController)
 router.get('/create', authUser, userControllers.getCreatePage)

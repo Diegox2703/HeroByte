@@ -146,7 +146,7 @@ export const getUpdatePage = async (req, res) => {
     username
   );
 
-  if (!character) return res.status(400).redirect("/home");
+  if (!character) return res.status(400).redirect("/");
 
   res.render("create", { user: username, userImg, character });
 };
@@ -197,7 +197,7 @@ export const registerValidation = async (req, res) => {
       httpOnly: true,
       sameSite: "strict",
     })
-    .json({ redirect: "/home" });
+    .json({ redirect: "/" });
 };
 
 export const loginValidation = async (req, res) => {
@@ -227,7 +227,7 @@ export const loginValidation = async (req, res) => {
       httpOnly: true,
       sameSite: "strict",
     })
-    .json({ redirect: "/home" });
+    .json({ redirect: "/" });
 };
 
 export const usernameValidation = async (req, res) => {
@@ -250,7 +250,7 @@ export const usernameValidation = async (req, res) => {
   const validatedUsername = result.data.username;
 
   await userModules.updateUsername(validatedUsername, userId);
-  res.status(200).json({ redirect: "/home" });
+  res.status(200).json({ redirect: "/" });
 };
 
 export const closeSession = async (req, res) => {
@@ -304,7 +304,7 @@ export const characterValidation = async (req, res) => {
     await saveUserProfile(userProfileUpdated, username);
   }
 
-  res.json({ redirect: "/home" });
+  res.json({ redirect: `/profile/${username}` });
 };
 
 export const searchCharacters = async (req, res) => {
@@ -400,7 +400,7 @@ export const updateCharacter = async (req, res) => {
     await saveUserProfile(userProfileUpdated, username);
   }
 
-  res.json({ redirect: "/home" });
+  res.json({ redirect: `/profile/${username}`});
 };
 
 // Delete
@@ -454,7 +454,7 @@ export const handleStrategy = (strategy) => {
           return res.status(400).render("errorPage", {
             errorMessage: "Hubo un error interno, intente mas tarde",
           });
-        res.status(200).redirect("/home");
+        res.status(200).redirect("/");
       });
     })(req, res, next);
   };
