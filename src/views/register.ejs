@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', {title: 'Register'}) %>
+    <body>
+        <div class="website-container">
+            <header class="main-header">
+            </header>
+            <main class="main-content">
+                <div class="content">
+                    <div class="form-container">
+                        <form id="register-form" class="form">
+                            <div class="logo-section">
+                                <img class="website-logo" src="/images/website-logo.png" alt="website-logo">
+                                <h1 class="website-name">HeroByte</h1>
+                            </div>
+                            <div>
+                                <h2>Registrate en heroByte</h2>
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Usuario</label>
+                                <input type="text" class="input-field form-input-field" placeholder="Escriba su usuario" name="username" autocomplete="off">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Email</label>
+                                <input type="text" class="input-field form-input-field" placeholder="Escriba su email" name="email" autocomplete="off">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Contraseña</label>
+                                <input type="password" class="input-field form-input-field" placeholder="Escriba su contraseña" name="password" autocomplete="off">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Confirma la contraseña</label>
+                                <input type="password" class="input-field form-input-field" placeholder="Escriba de nuevo la contraseña" name="confirm_password" autocomplete="off">
+                            </div>
+                            <p class="error-msg"></p>
+                            <div class="input-group">
+                                <button class="btn-style-1" id="login-btn">Registrarse</button>
+                            </div>
+                            <div class="o-container">
+                                <p class="o">O</p>
+                            </div>
+                            <div class="third-party-auth">
+                                <a href="/auth/register/google" class="google-auth">
+                                    <i class="fa-brands fa-google"></i>
+                                    <p>Continuar con Google</p>
+                                </a>
+                            </div>
+                            <div class="login-register-redirection">
+                                <p>¿Ya tienes cuenta?, inicia sesion <a href="/login">Aqui</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script type="module" src="/js/register.js"></script>
+    </body>
+</html>

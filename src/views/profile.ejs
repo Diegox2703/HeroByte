@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', {title: 'Perfil'}) %>
+    <body>
+        <div class="website-container">
+            <header class="main-header">
+                <% if (user) { %>
+                    <%- include('partials/userHeader') %>
+                <% } else { %>
+                    <%- include('partials/globalHeader') %>
+                <% } %>
+            </header>
+            <main class="main-content">
+                <div class="content">
+                    <section class="user-info-section">
+                        <div class="user-image-container">
+                            <img class="user-image" src="/uploads/profileImg/<%= userProfile[0].user_img %>" alt="user-image">
+                            <% if (isAuthorized) { %>
+                                <label for="input-file" class="edit-btn-container">
+                                    <i class="fa-solid fa-pencil"></i>
+                                    <input class="profile-image" type="file" name="profile-image" id="input-file" accept="jpg">
+                                </label>
+                            <% } %>
+                        </div>
+                        <div class="user-info">
+                            <h1 class="user-name"><%= userProfile[0].username %></h1>
+                            <h3 class="user-email"><%= userProfile[0].email %></h3>
+                        </div>
+                    </section>
+                    <section class="user-characters-title">
+                        <h1 class="title">Personajes</h1>
+                    </section>
+                    <section class="user-characters-section">
+                        <div class="characters-container">
+                            <% if (userProfile[0].character_id) { %>
+                                <% userProfile.forEach(characterCard => { %> 
+                                    <article class="character-card" data-id="<%= characterCard.character_id %>">
+                                        <section class="character-image-section">
+                                            <img class="character-image" src="/uploads/characterImg/<%= characterCard.character_img %>" alt="character-image">
+                                        </section>
+                                        <section class="character-name-section">
+                                            <h2 class="character-name"><%= characterCard.character_name %></h2>
+                                        </section>
+                                    </article>    
+                                <% }) %>
+                            <% } %>
+                        </div>
+                    </section>
+                </div>
+            </main>
+            <%- include('partials/characterModal') %>
+            <div class="profileModal-container">
+                <div class="profileModal">
+                    <div class="close-profileModal-container">
+                        <button class="close-profileModal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="profile-img-modal-container">
+                        <img src="/images/doomguy.jpg" alt="profile-img" class="profile-img-modal">
+                    </div>
+                </div>
+            </div>
+            <div class="errorModal-container">
+                <div class="errorModal">
+                    <div class="error-icon-container">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <div class="error-msg-modal-container">
+                        <p class="error-msg-modal">Error</p>
+                    </div>
+                    <div class="ok-btn-container">
+                        <button class="btn-style-1 ok-btn">Ok</button>
+                    </div>
+                </div>
+            </div>
+            <div class="deleteModal-container">
+                <div class="deleteModal">
+                    <div class="trash-icon-container">
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
+                    <div class="msg-modal-container">
+                        <p class="msg-modal">¿Seguro que quiere eliminar este personaje?</p>
+                    </div>
+                    <div class="btns-container">
+                        <div class="confirm-btn-container">
+                            <button class="btn-style-1 confirm-btn">Confirmar</button>
+                        </div>
+                        <div class="cancel-btn-container">
+                            <button class="btn-style-1 cancel-btn">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script  type="module" src="/js/logout.js"></script>
+        <script  type="module" src="/js/characterCard.js"></script>
+        <script  type="module" src="/js/updateCharacter.js"></script>
+        <script  type="module" src="/js/userProfile.js"></script>
+        <script  type="module" src="/js/showProfileImg.js"></script>
+        <script  type="module" src="/js/deleteModal.js"></script>
+    </body>
+</html>

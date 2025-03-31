@@ -1,0 +1,47 @@
+<div class="characterModal-container">
+    <div id="characterModal">
+        <section class="characterModal-header">
+            <% if (isAuthorized) { %>
+                <button class="editModal-btn toggle-menu">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <ul class="dropdown-menu editModal-btn-menu">
+                        <li class="dropdown-menu-opt"><a class="nav-link update-btn">Actualizar</a></li>
+                        <li class="dropdown-menu-opt"><a class="nav-link delete-btn">Eliminar</a></li>
+                    </ul>
+                </button>
+            <% } %>
+            <button class="closeModal-btn">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+        </section>
+        <section class="characterModal-body">
+            <section class="characterModal-image-section">
+                <img src="" alt="character-image" class="character-image-modal">
+            </section>
+            <section class="character-description-section">
+                <div class="character-description-container">
+                    <div class="createdBy-container">
+                        <span class="uploadBy">Subido por: </span>
+                        <a class="uploader"></a>
+                    </div>
+                    <div class="character-name-container">
+                        <h1 class="character-name-modal"></h1>
+                    </div>
+                    <div class="character-description">
+                        <p class="description"></p>
+                    </div>
+                </div>
+                <div class="character-info">
+                    <div class="character-creator-container">
+                        <span class="character-creator">Creador del personaje: </span>
+                        <span class="creator"></span>
+                    </div>
+                    <div class="character-game-container">
+                        <span class="character-game">Juego: </span>
+                        <a class="game"></a>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="header">
+    <a href="/home" class="logo-section">
+        <img class="website-logo" src="/images/website-logo.png" alt="website-logo">
+        <h1 class="website-name">HeroByte</h1>
+    </a>
+    <div class="user-section">
+        <div class="create-btn-section">
+            <a href="/create" class="btn-style-1 create-btn">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        </div>
+        <button class="user-menu toggle-menu">
+            <img src="/uploads/profileImg/<%= userImg %>" alt="user-profile-image" class="user-profile-image">
+            <p class="main-user-name"><%= user %></p>
+            <ul class="dropdown-menu">
+                <li class="dropdown-menu-opt"><a href="/profile/<%= user %>" class="nav-link">Perfil</a></li>
+                <li class="dropdown-menu-opt"><a class="nav-link logout-btn">Cerrar sesion</a></li>
+            </ul>
+        </button>
+    </div>
+</div>

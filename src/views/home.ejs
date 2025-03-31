@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', {title: 'Inicio'}) %>
+    <body>
+        <div class="website-container">
+            <header class="main-header">
+                <% if (user) { %>
+                    <%- include('partials/userHeader', {user}) %>
+                <% } else { %>
+                    <%- include('partials/globalHeader') %>
+                <% } %>
+            </header>
+            <main class="main-content">
+                <div class="content">
+                    <div class="banner-container">
+                        <section class="banner-section">
+                            <img class="banner" src="/images/banner.webp" alt="banner">
+                        </section>
+                        <section class="banner-description-section">
+                            <div class="logo-section">
+                                <img class="website-logo" src="/images/website-logo.png" alt="">
+                                <h1 >HeroByte</h1>
+                            </div>
+                            <div class="banner-description-container">
+                                <h1 class="banner-title">Personajes de video juegos y mas</h1>
+                                <p class="banner-description">Descubre el universo de los personajes más icónicos de los videojuegos. Desde héroes legendarios hasta villanos memorables, explora sus historias, habilidades y curiosidades en un solo lugar. ¡Revive la magia de tus juegos favoritos!</p>
+                                <a class="explore-more-link" href="/characters">Explora mas</a>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="characters-home-container">
+                        <section class="characters-section-title">
+                            <h1 class="title">Personajes de Mario Bros</h1>
+                            <a href="/characters?game=Mario Bros" class="watch-more">Ver mas</a>
+                        </section>
+                        <section class="characters-section">
+                            <% if (marioCharacters) { %>
+                                <% marioCharacters.forEach(character => { %>
+                                    <article class="character-card" data-id="<%= character.character_id %>">
+                                        <section class="character-image-section">
+                                            <img class="character-image" src="/uploads/characterImg/<%= character.character_img %>" alt="character-image">
+                                        </section>
+                                        <section class="character-name-section">
+                                            <h2 class="character-name"><%= character.character_name %></h2>
+                                        </section>
+                                    </article>  
+                                <% }) %>
+                            <% } %>
+                        </section>
+                        <section class="characters-section-title">
+                            <h1 class="title">Personajes de Zelda</h1>
+                            <a href="/characters?game=Zelda" class="watch-more">Ver mas</a>
+                        </section>
+                        <section class="characters-section">
+                            <% if (zeldaCharacters) { %>
+                                <% zeldaCharacters.forEach(character => { %>
+                                    <article class="character-card" data-id="<%= character.character_id %>">
+                                        <section class="character-image-section">
+                                            <img class="character-image" src="/uploads/characterImg/<%= character.character_img %>" alt="character-image">
+                                        </section>
+                                        <section class="character-name-section">
+                                            <h2 class="character-name"><%= character.character_name %></h2>
+                                        </section>
+                                    </article>  
+                                <% }) %>
+                            <% } %>
+                        </section>
+                        <section class="characters-section-title">
+                            <h1 class="title">Personajes de Halo</h1>
+                            <a href="/characters?game=Halo" class="watch-more">Ver mas</a>
+                        </section>
+                        <section class="characters-section">
+                            <% if (haloCharacters) { %>
+                                <% haloCharacters.forEach(character => { %>
+                                    <article class="character-card" data-id="<%= character.character_id %>">
+                                        <section class="character-image-section">
+                                            <img class="character-image" src="/uploads/characterImg/<%= character.character_img %>" alt="character-image">
+                                        </section>
+                                        <section class="character-name-section">
+                                            <h2 class="character-name"><%= character.character_name %></h2>
+                                        </section>
+                                    </article>  
+                                <% }) %>
+                            <% } %>
+                        </section>
+                        <section class="more-characters-section">
+                            <a class="explore-more-link" href="/characters">Ver todos los personajes</a>
+                        </section>
+                    </div>
+                </div>
+            </main>
+            <%- include('partials/characterModal') %>
+        </div>
+        <script  type="module" src="/js/logout.js"></script>
+        <script  type="module" src="/js/characterCard.js"></script>
+    </body>
+</html>

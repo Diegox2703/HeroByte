@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', {title: 'Personajes'}) %>
+    <body>
+        <div class="website-container">
+            <header class="main-header">
+                <% if (user) { %>
+                    <%- include('partials/userHeader') %>
+                <% } else { %>
+                    <%- include('partials/globalHeader') %>
+                <% } %>
+            </header>
+            <main class="main-content">
+                <div class="content">
+                    <div class="search-container">
+                        <div class="search-bar-container">
+                            <input id="search-bar" class="input-field" type="text" placeholder="Busque un personaje">
+                            <button class="btn-style-1 filter-btn toggle-menu">
+                                <i class="fa-solid fa-sliders"></i>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-menu-opt"><a href="/characters" class="nav-link">Todos los personajes</a></li>
+                                    <% games.forEach(game => { %>
+                                        <li class="dropdown-menu-opt"><a href="?game=<%= game.game_name %>" class="nav-link"><%= game.game_name %></a></li>
+                                    <% }) %>
+                                </ul>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="characters-container">
+                        <% if (characters) { %>
+                            <% characters.forEach(character => { %>
+                                <article class="character-card" data-id="<%= character.character_id %>">
+                                    <section class="character-image-section">
+                                        <img class="character-image" src="/uploads/characterImg/<%= character.character_img %>" alt="character-image">
+                                    </section>
+                                    <section class="character-name-section">
+                                        <h2 class="character-name"><%= character.character_name %></h2>
+                                    </section>
+                                </article>  
+                            <% }) %>
+                        <% } %>
+                    </div>
+                </div>
+            </main>
+            <%- include('partials/characterModal') %>
+        </div>
+        <script  type="module" src="/js/logout.js"></script>
+        <script  type="module" src="/js/characterCard.js"></script>
+        <script  type="module" src="/js/searchCharacter.js"></script>
+    </body>
+</html>

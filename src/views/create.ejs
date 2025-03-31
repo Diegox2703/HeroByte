@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', {title: 'Personajes'}) %>
+    <body>
+        <div class="website-container">
+            <header class="main-header">
+                <% if (user) { %>
+                    <%- include('partials/userHeader') %>
+                <% } else { %>
+                    <%- include('partials/globalHeader') %>
+                <% } %>
+            </header>
+            <main class="main-content">
+                <div class="content">
+                    <div class="form-container">
+                        <form id="create-character-form" class="form" data-id="<%= character ? character.character_id : false %>" >
+                            <section class="character-image-section">
+                                <img class="demo-image" src="<%= character ? `/uploads/characterImg/${character.character_img}` : '' %>" 
+                                data-oldimage="<%= character ? `/uploads/${character.character_img}` : '' %>" 
+                                alt="image">
+                                <div class="upload-image-btn-container">
+                                    <label class="upload-image-btn" for="input-file">
+                                        <i class="fa-regular fa-square-plus"></i>
+                                    </label>
+                                    <p>Suba una imagen aqui</p>
+                                </div>
+                                <input type="file" name="character_image" id="input-file">
+                            </section>
+                            <section class="character-description-section">
+                                <div class="input-group">
+                                    <label class="input-label">Personaje</label>
+                                    <input class="input-field form-input-field" type="text" placeholder="Escriba un personaje" name="character_name" autocomplete="off" value="<%= character ? character.character_name : '' %>">
+                                </div>
+                                <div class="input-group">
+                                    <label class="input-label">Descripcion</label>
+                                    <div contenteditable class="input-field-description" data-placeholder="Escriba una descripcion del personaje" name="description" autocomplete="off">
+                                        <%- character ? character.description : '' %>
+                                    </div>
+                                </div>
+                                <div class="input-group game-input-game">
+                                    <label class="input-label">Juego</label>
+                                    <input id="game-input" class="input-field form-input-field" type="text" placeholder="Escriba el juego al que pertenece el personaje" name="game" autocomplete="off" value="<%= character ? character.game_name : '' %>">
+                                    <ul class="dropdown-menu game-dropdown-menu">
+                                    </ul>
+                                </div>
+                                <div class="input-group">
+                                    <label class="input-label">Creador</label>
+                                    <input class="input-field form-input-field" type="text" placeholder="Escriba el creador del personaje" name="creator" autocomplete="off" value="<%= character ? character.creator : '' %>">
+                                </div>
+                                <p class="error-msg"></p>
+                                <div class="input-group">
+                                    <button class="btn-style-1 characterCreator-btn">Subir</button>
+                                </div>
+                            </section>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script  type="module" src="/js/logout.js"></script>
+        <script type="module" src="/js/showUploadedImg.js"></script>
+        <script type="module" src="/js/descriptionField.js"></script>
+        <script type="module" src="/js/newCharacter.js"></script>
+        <script type="module" src="/js/searchGame.js"></script>
+    </body>
+</html>

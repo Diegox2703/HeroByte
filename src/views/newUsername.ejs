@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head', {title: 'Login'}) %>
+    <body>
+        <div class="website-container">
+            <header class="main-header">
+            </header>
+            <main class="main-content">
+                <div class="content">
+                    <div class="form-container">
+                        <form id="newUsername-form" class="form">
+                            <div class="logo-section">
+                                <img class="website-logo" src="/images/website-logo.png" alt="website-logo">
+                                <h1 class="website-name">HeroByte</h1>
+                            </div>
+                            <div>
+                                <h2>Crea un numbre de usuario</h2>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" class="input-field form-input-field" placeholder="Nombre de usuario" name="username">
+                            </div>
+                            <p class="error-msg"></p>
+                            <div class="add-username-btn-container">
+                                <button class="btn-style-1" id="add-username-btn">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script type="module" src="/js/newUsername.js"></script>
+    </body>
+</html>
